@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'factures_api' => [
+        'url' => env('FACTURES_API_URL', 'https://commerce-vente.jbelannour.org/api/factures'),
+        'key' => env('FACTURES_API_KEY'),
+    ],
+
 ];

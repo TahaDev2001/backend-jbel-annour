@@ -115,4 +115,16 @@ return [
         'name' => env('MAIL_FROM_NAME', env('APP_NAME', 'Laravel')),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Notification Address
+    |--------------------------------------------------------------------------
+    |
+    | Address that receives a copy of every candidature and product request
+    | submitted through the website.
+    |
+    */
+
+    'admin_address' => env('MAIL_ADMIN_ADDRESS', 'jbel-annour@jbel-annour.com'),
+
 ];

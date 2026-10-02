@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Mail\CommandeProduitConfirmation;
+use App\Mail\CommandeProduitNotificationAdmin;
 use App\Models\Produit;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -62,6 +63,15 @@ class ProduitController extends Controller
             Log::error("Échec de l'envoi de l'email de confirmation de commande", [
                 'produit_id' => $produit->id,
                 'email' => $produit->email,
+                'error' => $e->getMessage(),
+            ]);
+        }
+
+        try {
+            Mail::to(config('mail.admin_address'))->send(new CommandeProduitNotificationAdmin($produit));
+        } catch (Throwable $e) {
+            Log::error("Échec de l'envoi de la notification admin de commande", [
+                'produit_id' => $produit->id,
                 'error' => $e->getMessage(),
             ]);
         }

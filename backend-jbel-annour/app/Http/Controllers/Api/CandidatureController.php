@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Mail\CandidatureConfirmation;
+use App\Mail\CandidatureNotificationAdmin;
 use App\Models\Candidature;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -56,6 +57,15 @@ class CandidatureController extends Controller
             Log::error("Échec de l'envoi de l'email de confirmation de candidature", [
                 'candidature_id' => $candidature->id,
                 'email' => $candidature->email,
+                'error' => $e->getMessage(),
+            ]);
+        }
+
+        try {
+            Mail::to(config('mail.admin_address'))->send(new CandidatureNotificationAdmin($candidature));
+        } catch (Throwable $e) {
+            Log::error("Échec de l'envoi de la notification admin de candidature", [
+                'candidature_id' => $candidature->id,
                 'error' => $e->getMessage(),
             ]);
         }
