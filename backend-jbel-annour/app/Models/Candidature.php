@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Candidature extends Model
 {
-    protected $table = 'candidatures';
+    protected $connection = 'facturation';
+
+    protected $table = 'apm_candidatures';
 
     protected $fillable = [
         'nom',

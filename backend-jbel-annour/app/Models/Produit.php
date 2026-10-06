@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Produit extends Model
 {
-    protected $table = 'produits';
+    protected $connection = 'facturation';
+
+    protected $table = 'apm_products';
 
     protected $fillable = [
         'quantite_b7',
