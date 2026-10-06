@@ -37,4 +37,46 @@ class Facture extends Model
         'notes',
         'declaration_acceptee',
     ];
+
+    protected $appends = ['bc_files'];
+
+    protected $casts = [
+        'montant_ht' => 'float',
+        'montant_tva' => 'float',
+        'montant_ttc' => 'float',
+        'declaration_acceptee' => 'boolean',
+    ];
+
+    public const NATURES = [
+        'matieres_premieres' => 'Matières premières',
+        'pieces_rechange' => 'Pièces de rechange',
+        'services_industriels' => 'Services industriels',
+        'transport' => 'Transport',
+        'location' => 'Location',
+        'travaux' => 'Travaux',
+        'autres' => 'Autres',
+    ];
+
+    public function getBcFilesAttribute(): array
+    {
+        return self::parseDocList($this->attributes['doc_bon_commande'] ?? null);
+    }
+
+    public static function parseDocList(?string $raw): array
+    {
+        $raw = trim((string) $raw);
+
+        if ($raw === '') {
+            return [];
+        }
+
+        if ($raw[0] === '[') {
+            $decoded = json_decode($raw, true);
+            if (is_array($decoded)) {
+                return array_values(array_filter($decoded, fn ($v) => $v !== null && $v !== ''));
+            }
+        }
+
+        return [$raw];
+    }
 }

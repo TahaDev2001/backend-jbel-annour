@@ -66,11 +66,11 @@ return [
 
         'facturation' => [
             'driver' => 'mysql',
-            'host' => env('DB_FACTURATION_HOST', '127.0.0.1'),
+            'host' => env('DB_FACTURATION_HOST', 'localhost'),
             'port' => env('DB_FACTURATION_PORT', '3306'),
-            'database' => env('DB_FACTURATION_DATABASE', ''),
-            'username' => env('DB_FACTURATION_USERNAME', ''),
-            'password' => env('DB_FACTURATION_PASSWORD', ''),
+            'database' => env('DB_FACTURATION_DATABASE', 'jbelannourmaroc_newsite'),
+            'username' => env('DB_FACTURATION_USERNAME', 'jbelannourmaroc_usrnewsite'),
+            'password' => env('DB_FACTURATION_PASSWORD', '"MsDCLLo^x@1S"'),
             'unix_socket' => '',
             'charset' => env('DB_FACTURATION_CHARSET', 'utf8mb4'),
             'collation' => env('DB_FACTURATION_COLLATION', 'utf8mb4_unicode_ci'),

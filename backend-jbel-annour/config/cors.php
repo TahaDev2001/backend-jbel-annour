@@ -19,7 +19,11 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['http://localhost:5173'],
+    'allowed_origins' => [
+        'http://localhost:5173',
+        'https://ton-domaine-front.ma',
+        'https://www.ton-domaine-front.ma',
+    ],
 
     'allowed_origins_patterns' => [],
 
