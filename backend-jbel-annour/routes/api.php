@@ -40,3 +40,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/factures/{id}', [AdminFactureController::class, 'update'])->whereNumber('id');
     });
 });
+
+
+
